@@ -1,0 +1,14 @@
+# The main entry point of your workflow.
+# After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
+
+
+report: "report/workflow.rst"
+
+# Allow users to fix the underlying OS via singularity.
+include: "rules/common.smk"
+
+rule all:
+    input:
+        "data/processed/qc/multiqc.html"
+
+include: "rules/qc.smk"
