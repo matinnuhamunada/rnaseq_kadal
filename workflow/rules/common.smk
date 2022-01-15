@@ -30,3 +30,7 @@ PE = ["fq1", "fq2"]
 def get_pe_raw(sample, unit):
     x = units.loc[(sample, unit), ["fq1", "fq2"]].dropna()
     return x.values
+
+wildcard_constraints:
+    sample="|".join(SAMPLES),
+    unit="|".join(UNITS),

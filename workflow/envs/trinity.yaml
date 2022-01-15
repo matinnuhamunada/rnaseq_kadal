@@ -1,0 +1,7 @@
+name: trinity_env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - trinity=2.13.2
