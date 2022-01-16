@@ -19,7 +19,7 @@ validate(samples, schema="../schemas/samples.schema.yaml")
 
 units = (
     pd.read_csv(config["run"]["units"], sep="\t", dtype={"ID": str, "unit_name": str})
-    .set_index(["ID", "unit_name"], drop=False)
+    .set_index(["ID"], drop=False)
     .sort_index()
 )
 
@@ -31,8 +31,8 @@ UNITS = units.unit_name.to_list()
 CONDITIONS = samples.Condition.to_list()
 PE = ["fq1", "fq2"]
 
-def get_pe_raw(sample, unit):
-    x = units.loc[(sample, unit), ["fq1", "fq2"]].dropna()
+def get_pe_raw(sample):
+    x = units.loc[sample, ["fq1", "fq2"]].dropna()
     return x.values
 
 wildcard_constraints:
