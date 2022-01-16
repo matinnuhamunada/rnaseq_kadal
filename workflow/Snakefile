@@ -10,9 +10,7 @@ include: "rules/common.smk"
 rule all:
     input:
         "data/processed/qc/multiqc.html",
-        #expand("data/interim/trimmed/{sample}-{unit}.1.fastq.gz", sample=SAMPLES, unit=UNITS),
-        #expand("data/interim/trimmed/{sample}-{unit}.2.fastq.gz", sample=SAMPLES, unit=UNITS),
-        expand("data/processed/trinity/trinity_{name}-{condition}.Trinity.fasta", name=run_name, condition=CONDITIONS),
+        expand("data/processed/busco/txome_busco_{name}-{condition}/", name=run_name, condition=CONDITIONS),
 
 include: "rules/qc.smk"
 include: "rules/trinity.smk"

@@ -2,10 +2,10 @@ rule prep_trinity:
     output:
         "data/interim/trinity/{name}_{condition}_samples.txt"
     log:
-        'logs/trinity/trinity-{name}_{condition}_samples.log'
+        'workflow/report/logs/trinity/trinity-{name}_{condition}_samples.log'
     shell:
         """
-        python workflow/scripts/prep_trinity.py {wildcards.name} {wildcards.condition} {output}
+        python workflow/scripts/prep_trinity.py {wildcards.name} {wildcards.condition} {output} 2> {log}
         """
 rule trinity:
     input:
@@ -13,7 +13,7 @@ rule trinity:
     output:
         "data/processed/trinity/trinity_{name}-{condition}.Trinity.fasta"
     log:
-        'logs/trinity/trinity-{name}-{condition}.log'
+        'workflow/report/logs/trinity/trinity-{name}-{condition}.log'
     params:
         normalize_max_read_cov = 30,
         min_kmer_cov = 2,
@@ -30,5 +30,5 @@ rule trinity:
     shell:
         """
         Trinity --seqType fq --SS_lib_type {params.SS_lib_type}  --max_memory {resources.mem_gb} --CPU {threads} --samples_file {input} --output data/processed/trinity/trinity_{wildcards.name}-{wildcards.condition} \
-        --min_kmer_cov {params.min_kmer_cov} --bflyCPU {threads} --bflyHeapSpaceMax {resources.mem_gb} --normalize_max_read_cov {params.normalize_max_read_cov} --trimmomatic
+        --min_kmer_cov {params.min_kmer_cov} --bflyCPU {threads} --bflyHeapSpaceMax {resources.mem_gb} --normalize_max_read_cov {params.normalize_max_read_cov} --trimmomatic > {log} 2>> {log}
         """
