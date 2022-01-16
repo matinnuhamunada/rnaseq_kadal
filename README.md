@@ -3,11 +3,15 @@
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.7.0-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![Build Status](https://travis-ci.org/snakemake-workflows/RNAseq_kadal.svg?branch=master)](https://travis-ci.org/snakemake-workflows/RNAseq_kadal)
 
-This workflow aims to analyse gene expression in tail regeneration of G. gecko.
+A snakemake workflow to analyze gene expression in tail regeneration of _G. gecko_. This workflow was build using the [snakemake cookie-cutter template](https://github.com/snakemake-workflows/cookiecutter-snakemake-workflow) and heavily inspired by this [workflow](https://github.com/snakemake-workflows/rna-seq-star-deseq2).
 
 ## Authors
 * Luthfi Nurhidayat
+* Roxane Boyer
 * Matin Nuhamunada
+
+## Workflow overview
+![dag](workflow/report/images/dag-rulegraph.svg)
 
 ## Usage
 
@@ -24,7 +28,23 @@ cd rnaseq_kadal
 
 ### Step 2: Configure workflow
 
-Configure the workflow according to your needs via editing the files in the `config/` folder. Adjust `config.yaml` to configure the workflow execution, and `samples.tsv` to specify your sample setup.
+Configure the workflow according to your needs via editing the files in the `config/` folder. Adjust `config.yaml` to configure the workflow execution, `samples.tsv`, and `units.tsv` to specify your sample setup.
+
+The parameter `samples` denote the location of your `.tsv` file which specify the samples to analyse. The parameter `units` informs the paired end `.fastq` locations of each sample.
+
+Example : `samples.tsv`
+
+| ID        | Condition | Replicate  | Description |
+|----------:|----------:|-----------:|------------:|
+| 21s003090 | RegenT    | 2          | 8dpa        |
+| 21s003091 | RegenT    | 3          | 16dpa       |
+
+Example : `units.tsv`
+
+| ID        | unit_name | fq1                              | fq2                             | sra | adapters | strandedness |
+|----------:|----------:|---------------------------------:|--------------------------------:|----:|---------:|-------------:|
+| 21s003090	| RegenT2	| .test/data/raw/RT_8dpa_1.fastq   |.test/data/raw/RT_8dpa_2.fastq   |     |          |              |
+| 21s003091	| RegenT3   | .test/data/raw/RT_16dpa1_1.fastq |.test/data/raw/RT_16dpa1_2.fastq |     |          |              |
 
 ### Step 3: Install Snakemake
 
