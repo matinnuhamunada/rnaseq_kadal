@@ -6,9 +6,34 @@ type: object
 
 # possible entries of the config file and which type they should be
 properties:
-  samples:
-    type: string
-
+  run:
+    description: each run contains a sample and units
+    type: object
+    properties:
+      name:
+        type: string
+      samples:
+        type: string
+      units:
+        type: string
+    required:
+      - name
+      - samples
+      - units
+  
+  resources:
+    description: each run contains a sample and units
+    type: object
+    properties:
+      fastqc:
+        threads: 2
+      trimmomatic:
+        threads: 4
+        mem_mb: 1024
+      trinity:
+        threads: 4
+        mem_gb: 2G
 # entries that have to be in the config file for successful validation
 required:
-  - samples
+  - run
+  - resources

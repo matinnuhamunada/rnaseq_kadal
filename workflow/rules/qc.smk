@@ -8,7 +8,7 @@ rule fastqc:
     params: "--quiet"
     log:
         "workflow/report/logs/fastqc/{sample}-{unit}.log"
-    threads: 1
+    threads: config["resources"]["fastqc"]["threads"]
     wrapper:
         "v0.85.1/bio/fastqc"
 
@@ -31,13 +31,13 @@ rule trimmomatic_pe:
         extra="",
         compression_level="-9"
     threads:
-        8
+        config["resources"]["trimmomatic"]["threads"]
     # optional specification of memory usage of the JVM that snakemake will respect with global
     # resource restrictions (https://snakemake.readthedocs.io/en/latest/snakefiles/rules.html#resources)
     # and which can be used to request RAM during cluster job submission as `{resources.mem_mb}`:
     # https://snakemake.readthedocs.io/en/latest/executing/cluster.html#job-properties
     resources:
-        mem_mb=1024
+        mem_mb=config["resources"]["trimmomatic"]["mem_mb"]
     wrapper:
         "v0.85.1/bio/trimmomatic/pe"
 

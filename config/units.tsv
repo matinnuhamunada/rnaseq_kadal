@@ -1,2 +1,3 @@
-sample_name	unit_name	fq1	fq2	sra	adapters	strandedness
-21s003091	RegenT3	data/raw/RT_16dpa1_1.fastq	data/raw/RT_16dpa1_2.fastq			
+ID	unit_name	fq1	fq2	sra	adapters	strandedness
+21s003090	RegenT2	.test/data/raw/RT_8dpa_1.fastq	.test/data/raw/RT_8dpa_2.fastq			
+21s003091	RegenT3	.test/data/raw/RT_16dpa1_1.fastq	.test/data/raw/RT_16dpa1_2.fastq			

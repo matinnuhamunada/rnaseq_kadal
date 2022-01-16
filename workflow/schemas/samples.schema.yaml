@@ -2,13 +2,19 @@ $schema: "http://json-schema.org/draft-06/schema#"
 
 description: an entry in the sample sheet
 properties:
-  sample_name:
+  ID:
     type: string
     description: sample name/identifier
-  condition:
+  Condition:
     type: string
     description: sample condition that will be compared during differential expression analysis (e.g. a treatment, a tissue time, a disease)
+  Replicate:
+    type: number
+    description: replicate number
+  Description:
+    type: string
+    description: description of the sample
 
 required:
-  - sample_name
-  - condition
+  - ID
+  - Condition

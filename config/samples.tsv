@@ -1,2 +1,3 @@
-sample_name	condition	replicate	description
+ID	Condition	Replicate	Description
+21s003090	RegenT	2	8dpa
 21s003091	RegenT	3	16dpa

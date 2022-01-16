@@ -12,7 +12,7 @@ rule all:
         "data/processed/qc/multiqc.html",
         #expand("data/interim/trimmed/{sample}-{unit}.1.fastq.gz", sample=SAMPLES, unit=UNITS),
         #expand("data/interim/trimmed/{sample}-{unit}.2.fastq.gz", sample=SAMPLES, unit=UNITS),
-        expand("data/processed/trinity/trinity_{sample}-{unit}.Trinity.fasta", sample=SAMPLES, unit=UNITS),
+        expand("data/processed/trinity/trinity_{name}-{condition}.Trinity.fasta", name=run_name, condition=CONDITIONS),
 
 include: "rules/qc.smk"
 include: "rules/trinity.smk"
